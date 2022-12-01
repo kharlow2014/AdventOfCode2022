@@ -11,35 +11,23 @@ sealed class DayOne(override val problem: Problem) : DayOfCode(Day.ONE, problem)
     class ProblemOne : DayOne(Problem.ONE) {
 
         override fun solve(): String {
-            val input = this::class.java.getResourceAsStream(dataFileName).bufferedReader().readLines()
-            val totalCaloriesByElf = getTotalCalorieCountPerElf(input)
-            val maxCalories = totalCaloriesByElf.maxOrNull() ?: 0
-            return "$maxCalories"
+            return "${getTotalCalorieCountPerElf().first()}"
         }
     }
 
     class ProblemTwo : DayOne(Problem.TWO) {
         override fun solve(): String {
-            val input = this::class.java.getResourceAsStream(dataFileName).bufferedReader().readLines()
-            val totalCaloriesByElf = getTotalCalorieCountPerElf(input)
-            val maxCalories = totalCaloriesByElf.take(3).sum()
-            return "$maxCalories"
+            return "${getTotalCalorieCountPerElf().take(3).sum()}"
         }
     }
 
-    fun getTotalCalorieCountPerElf(input: List<String>): List<Int> {
-        val foodItemsByElf = mutableListOf<List<Int>>()
-        var foodItemsForCurrentElf = mutableListOf<Int>()
-
-        input.forEachIndexed { index, item ->
-            if (index == input.size - 1) {
-                foodItemsForCurrentElf.add(item.toInt())
-                foodItemsByElf.add(foodItemsForCurrentElf)
-            } else if (item.isNotBlank()) {
-                foodItemsForCurrentElf.add(item.toInt())
+    fun getTotalCalorieCountPerElf(): List<Int> {
+        val foodItemsByElf = mutableListOf<MutableList<Int>>(mutableListOf())
+        this::class.java.getResourceAsStream(dataFileName).bufferedReader().readLines().forEach {
+            if (it.isBlank()) {
+                foodItemsByElf.add(mutableListOf())
             } else {
-                foodItemsByElf.add(foodItemsForCurrentElf)
-                foodItemsForCurrentElf = mutableListOf()
+                foodItemsByElf.last().add(it.toInt())
             }
         }
         return foodItemsByElf.map { it.sum() }.sortedDescending()
