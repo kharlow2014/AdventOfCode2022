@@ -4,18 +4,18 @@ import DayOfCode
 
 // https://adventofcode.com/2022/day/1
 
-sealed class DayOne(override val problem: Problem) : DayOfCode(Day.ONE, problem) {
+sealed class Day1(override val problem: Problem) : DayOfCode(Day.ONE, problem) {
     override val dataFileName: String
-        get() = "/one.data"
+        get() = "/1.data"
 
-    class ProblemOne : DayOne(Problem.ONE) {
+    class Problem1 : Day1(Problem.ONE) {
 
         override fun solve(): String {
             return "${getTotalCalorieCountPerElf().first()}"
         }
     }
 
-    class ProblemTwo : DayOne(Problem.TWO) {
+    class Problem2 : Day1(Problem.TWO) {
         override fun solve(): String {
             return "${getTotalCalorieCountPerElf().take(3).sum()}"
         }
@@ -23,7 +23,7 @@ sealed class DayOne(override val problem: Problem) : DayOfCode(Day.ONE, problem)
 
     fun getTotalCalorieCountPerElf(): List<Int> {
         val foodItemsByElf = mutableListOf<MutableList<Int>>(mutableListOf())
-        this::class.java.getResourceAsStream(dataFileName).bufferedReader().readLines().forEach {
+        readLines().forEach {
             if (it.isBlank()) {
                 foodItemsByElf.add(mutableListOf())
             } else {

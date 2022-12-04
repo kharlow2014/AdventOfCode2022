@@ -3,6 +3,10 @@ abstract class DayOfCode(val day: Day, open val problem: Problem) {
     abstract val dataFileName: String
     abstract fun solve(): String
 
+    protected fun readLines(): List<String> = this::class.java.getResourceAsStream(dataFileName).bufferedReader().readLines()
+
+    protected fun readText(): String = this::class.java.getResourceAsStream(dataFileName).bufferedReader().readText()
+
     enum class Day {
         ONE,
         TWO,

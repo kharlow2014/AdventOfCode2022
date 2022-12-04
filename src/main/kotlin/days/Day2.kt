@@ -2,21 +2,21 @@ package days
 
 import DayOfCode
 
-sealed class DayTwo(override val problem: Problem) : DayOfCode(day = Day.TWO, problem = problem) {
+sealed class Day2(override val problem: Problem) : DayOfCode(day = Day.TWO, problem = problem) {
 
     override val dataFileName: String
-        get() = "/two.data"
+        get() = "/2.data"
 
-    class ProblemOne : DayTwo(Problem.ONE) {
+    class Problem1 : Day2(Problem.ONE) {
         override fun solve(): String =
-            this::class.java.getResourceAsStream(dataFileName).bufferedReader().readLines().map {
+            readLines().map {
                 getPlayForInput(it[0]) to getPlayForInput(it[2])
             }.sumOf { it.second.scoreWhenPlayedAgainst(it.first) }.toString()
     }
 
-    class ProblemTwo : DayTwo(Problem.TWO) {
+    class Problem2 : Day2(Problem.TWO) {
         override fun solve(): String =
-            this::class.java.getResourceAsStream(dataFileName).bufferedReader().readLines().map {
+            readLines().map {
                 val opponentsChoice = getPlayForInput(it[0])
                 opponentsChoice to opponentsChoice.responseForOutcome(it[2])
             }.sumOf { it.second.scoreWhenPlayedAgainst(it.first) }.toString()

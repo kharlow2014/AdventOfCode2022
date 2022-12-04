@@ -3,23 +3,22 @@ package days
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
-class TwoTest {
-
+class Test1 {
     @Test
     fun testOne() {
-        val day = DayTwo.ProblemOne()
+        val day = Day1.Problem1()
 
         val result = day.solve()
 
-        Assertions.assertEquals("15", result)
+        Assertions.assertEquals("24000", result)
     }
 
     @Test
     fun testTwo() {
-        val day = DayTwo.ProblemTwo()
+        val day = Day1.Problem2()
 
         val result = day.solve()
 
-        Assertions.assertEquals("12", result)
+        Assertions.assertEquals("45000", result)
     }
 }
