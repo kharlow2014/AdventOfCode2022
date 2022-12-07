@@ -2,6 +2,8 @@ import days.Day1
 import days.Day2
 import days.Day3
 import days.Day4
+import days.Day5
+import days.Day6
 
 val problems: List<DayOfCode> = listOf(
     Day1.Problem1(),
@@ -11,11 +13,15 @@ val problems: List<DayOfCode> = listOf(
     Day3.Problem1(),
     Day3.Problem2(),
     Day4.Problem1(),
-    Day4.Problem2()
+    Day4.Problem2(),
+    Day5.Problem1(),
+    Day5.Problem2(),
+    Day6.Problem1(),
+    Day6.Problem2()
 )
 
 fun main(args: Array<String>) {
-    val runClean = false
+    val runClean = true
     if (runClean) runClean() else runDirty()
 }
 
@@ -32,4 +38,6 @@ fun runDirty() {
     DirtySolutions.day2()
     DirtySolutions.day3()
     DirtySolutions.day4()
+    DirtySolutions.day5()
+    DirtySolutions.day6()
 }

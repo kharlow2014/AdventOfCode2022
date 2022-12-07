@@ -17,6 +17,16 @@ object DirtySolutions {
     fun day4() {
         readLines("/4.data").flatMap { line -> line.split(",", "-").map { it.toInt() } }.chunked(4) { Pair((it[0] >= it[2] && it[1] <= it[3]) || (it[0] <= it[2] && it[1] >= it[3]), (it[1] >= it[2] && it[0] <= it[3]) || (it[1] <= it[2] && it[0] >= it[3])) }.run { println("${this.sumOf { if (it.first) 1L else 0 }} ${this.sumOf { if (it.second) 1L else 0 }}") }
     }
+    
+    fun day5() {
+        val input = readText("/5.data")
+        println()
+    }
+    
+    fun day6() {
+        val solve: (Int) -> Int = { l -> readText("/6.data").windowed(l).foldIndexed(0) { i, a, c -> if (c.toSet().size == l && a == 0) i + l else a } }
+        println("${solve(4)} ${solve(14)}")
+    }
 
     private fun readLines(fileName: String): List<String> = this::class.java.getResourceAsStream(fileName).bufferedReader().readLines()
     private fun readText(fileName: String): String = this::class.java.getResourceAsStream(fileName).bufferedReader().readText()
