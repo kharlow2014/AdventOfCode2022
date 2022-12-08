@@ -5,6 +5,7 @@ import days.Day4
 import days.Day5
 import days.Day6
 import days.Day7
+import days.Day8
 
 val problems: List<DayOfCode> = listOf(
     Day1.Problem1(),
@@ -20,7 +21,9 @@ val problems: List<DayOfCode> = listOf(
     Day6.Problem1(),
     Day6.Problem2(),
     Day7.Problem1(),
-    Day7.Problem2()
+    Day7.Problem2(),
+    Day8.Problem1(),
+    Day8.Problem2()
 )
 
 fun main(args: Array<String>) {
