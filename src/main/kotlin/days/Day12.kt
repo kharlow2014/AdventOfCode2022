@@ -26,26 +26,14 @@ sealed class Day12(override val problem: Problem) : DayOfCode(day = Day.TWELVE, 
     data class Maze(private val input: List<String>) {
 
         private val codeMap = input.map { line -> line.map { it.code }.toMutableList() }
-        private val start = find(83)
-        private val end = find(69)
+        private val start = findAndReplace('S'.code, 'a'.code)
+        private val end = findAndReplace('E'.code, 'z'.code)
 
-        init {
-            codeMap.forEachIndexed { i, r ->
-                r.forEachIndexed { j, it ->
-                    if (it == 'S'.code) {
-                        codeMap[i][j] = 'a'.code
-                    }
-                    if (it == 'E'.code) {
-                        codeMap[i][j] = 'z'.code
-                    }
-                }
-            }
-        }
-
-        private fun find(code: Int) : Pair<Int, Int> {
+        private fun findAndReplace(find: Int, replace: Int) : Pair<Int, Int> {
             codeMap.forEachIndexed { i, r ->
                 r.forEachIndexed { j, item ->
-                    if (item == code) {
+                    if (item == find) {
+                        codeMap[i][j] = replace
                         return Pair(i, j)
                     }
                 }
