@@ -21,7 +21,10 @@ val problems: List<DayOfCode> = listOf(
     Day9.Problem2(),
     Day10.Problem1(),
     Day10.Problem2(),
-    Day11.Problem1()
+    Day11.Problem1(),
+    Day11.Problem2(),
+    Day12.Problem1(),
+    Day12.Problem2()
 )
 
 fun main(args: Array<String>) {
@@ -30,10 +33,13 @@ fun main(args: Array<String>) {
 }
 
 fun runClean() {
-    val results = problems.map { Runner.run(it) }
-    results.forEach {
-        println("Day: ${it.day}\nProblem: ${it.problem}")
-        println("Answer: ${it.answer}\nruntime: ${it.runtime} \n")
+    problems.forEach { problem ->
+        val result = Runner.run(problem)
+        println("Day: ${result.day}")
+        println("Problem: ${result.problem}")
+        println("Answer: ${result.answer}")
+        println("runtime: ${result.runtime}")
+        println()
     }
 }
 
