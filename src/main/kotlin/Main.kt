@@ -20,7 +20,8 @@ val problems: List<DayOfCode> = listOf(
     Day9.Problem1(),
     Day9.Problem2(),
     Day10.Problem1(),
-    Day10.Problem2()
+    Day10.Problem2(),
+    Day11.Problem1()
 )
 
 fun main(args: Array<String>) {
