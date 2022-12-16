@@ -352,4 +352,22 @@ class SolveTests {
 
         Assertions.assertEquals(56000011L, result)
     }
+    
+    @Test
+    fun sixteenOne() {
+        val day = Day16.Problem1()
+        
+        val result = day.solve()
+        
+        Assertions.assertEquals(1651, result)
+    }
+    
+    @Test
+    fun sixteenTwo() {
+        val day = Day16.Problem2()
+        
+        val result = day.solve()
+        
+        Assertions.assertEquals(1707, result)
+    }
 }
