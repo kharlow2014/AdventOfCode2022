@@ -10,16 +10,16 @@ sealed class Day12(override val problem: Problem) : DayOfCode(day = Day.TWELVE, 
         get() = "/12.data"
     
     class Problem1 : Day12(Problem.ONE) {
-        override fun solve(): String {
+        override fun solve(): Int {
             val maze = Maze(readLines())
-            return maze.findFromSpecifiedStart().toString()
+            return maze.findFromSpecifiedStart()
         }
     }
     
     class Problem2 : Day12(Problem.TWO) {
-        override fun solve(): String {
+        override fun solve(): Int {
             val maze = Maze(readLines())
-            return maze.findShortestFromAny().toString()
+            return maze.findShortestFromAny()
         }
     }
 

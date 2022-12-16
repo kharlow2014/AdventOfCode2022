@@ -9,23 +9,23 @@ sealed class Day13(override val problem: Problem) : DayOfCode(day = Day.THIRTEEN
         get() = "/13.data"
     
     class Problem1 : Day13(Problem.ONE) {
-        override fun solve(): String {
+        override fun solve(): Int {
             var result = 0
             val pairs = readText().split("\n\n").map { 
                 val split = it.split("\n")
                 Pair(PacketData.fromString(split[0]), PacketData.fromString(split[1]))
             }
             pairs.forEachIndexed { index, pair -> if (pair.first < pair.second) result += index + 1 }
-            return result.toString()
+            return result
         }
     }
 
     class Problem2 : Day13(Problem.TWO) {
-        override fun solve(): String {
+        override fun solve(): Int {
             val div1 = PacketData.fromString("[[2]]")
             val div2 = PacketData.fromString("[[6]]")
             val data = (readText().split("\n\n", "\n").map { PacketData.fromString(it) } + listOf(div1, div2)).sorted()
-            return ((data.indexOf(div1) + 1) * (data.indexOf(div2) + 1)).toString()
+            return ((data.indexOf(div1) + 1) * (data.indexOf(div2) + 1))
         }
     }
     

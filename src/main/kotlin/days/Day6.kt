@@ -8,14 +8,14 @@ sealed class Day6(override val problem: Problem) : DayOfCode(Day.SIX, problem) {
         get() = "/6.data"
     
     class Problem1(private val input: String? = null) : Day6(Problem.ONE) {
-        override fun solve(): String {
-            return solve(input ?: readText(), 4).toString()
+        override fun solve(): Int {
+            return solve(input ?: readText(), 4)
         }
     }
 
     class Problem2(private val input: String? = null) : Day6(Problem.TWO) {
-        override fun solve(): String {
-            return solve(input ?: readText(), 14).toString()
+        override fun solve(): Int {
+            return solve(input ?: readText(), 14)
         }
     }
     

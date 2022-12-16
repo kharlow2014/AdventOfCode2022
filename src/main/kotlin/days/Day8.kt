@@ -8,7 +8,7 @@ sealed class Day8(override val problem: Problem) : DayOfCode(Day.EIGHT, problem)
         get() = "/8.data"
 
     class Problem1 : Day8(Problem.ONE) {
-        override fun solve(): String {
+        override fun solve(): Int {
             val input = readLines().map { line -> line.map { it.digitToInt() } }
             return input.foldIndexed(0) { row, acc, list ->
                 acc + list.mapIndexed { column, item ->
@@ -30,12 +30,12 @@ sealed class Day8(override val problem: Problem) : DayOfCode(Day.EIGHT, problem)
                         }
                     }
                 }.sum()
-            }.toString()
+            }
         }
     }
 
     class Problem2 : Day8(Problem.TWO) {
-        override fun solve(): String {
+        override fun solve(): Int {
             val input = readLines().map { line -> line.map { it.digitToInt() } }
             return input.flatMapIndexed { row, list ->
                 list.mapIndexed { column, item ->
@@ -73,7 +73,7 @@ sealed class Day8(override val problem: Problem) : DayOfCode(Day.EIGHT, problem)
                         right * left * up * down
                     }
                 }
-            }.maxOf { it }.toString()
+            }.maxOf { it }
         }
     }
 

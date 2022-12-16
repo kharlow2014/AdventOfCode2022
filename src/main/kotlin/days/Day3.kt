@@ -7,16 +7,16 @@ sealed class Day3(override val problem: Problem) : DayOfCode(day = Day.THREE, pr
         get() = "/3.data"
 
     class Problem1 : Day3(Problem.ONE) {
-        override fun solve(): String {
+        override fun solve(): Int {
             return readLines().sumOf { items ->
                 RuckSack(items).duplicate.priority()
-            }.toString()
+            }
         }
     }
 
     class Problem2 : Day3(Problem.TWO) {
-        override fun solve(): String {
-            return readLines().chunked(3) { chunk -> ElfGroup(chunk) }.sumOf { group -> group.badge.priority() }.toString()
+        override fun solve(): Int {
+            return readLines().chunked(3) { chunk -> ElfGroup(chunk) }.sumOf { group -> group.badge.priority() }
         }
     }
 

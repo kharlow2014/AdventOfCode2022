@@ -10,14 +10,14 @@ sealed class Day1(override val problem: Problem) : DayOfCode(Day.ONE, problem) {
 
     class Problem1 : Day1(Problem.ONE) {
 
-        override fun solve(): String {
-            return "${getTotalCalorieCountPerElf().first()}"
+        override fun solve(): Int {
+            return getTotalCalorieCountPerElf().first()
         }
     }
 
     class Problem2 : Day1(Problem.TWO) {
-        override fun solve(): String {
-            return "${getTotalCalorieCountPerElf().take(3).sum()}"
+        override fun solve(): Int {
+            return getTotalCalorieCountPerElf().take(3).sum()
         }
     }
 

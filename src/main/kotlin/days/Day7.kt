@@ -8,7 +8,7 @@ sealed class Day7(override val problem: Problem) : DayOfCode(Day.SEVEN, problem)
         get() = "/7.data"
 
     class Problem1 : Day7(Problem.ONE) {
-        override fun solve(): String {
+        override fun solve(): Long {
             return readLines().fold(Structure.Directory("/")) { acc, s ->
                 val split = s.split(" ")
                 when {
@@ -19,12 +19,12 @@ sealed class Day7(override val problem: Problem) : DayOfCode(Day.SEVEN, problem)
                     split[0] == "dir" -> acc.add(Structure.Directory(split[1], acc))
                     else -> acc.add(Structure.File(split[1], split[0].toLong()))
                 }
-            }.home().getStructuresWithSizes().sumOf { if (it.second < 100000) it.second else 0L }.toString()
+            }.home().getStructuresWithSizes().sumOf { if (it.second < 100000) it.second else 0L }
         }
     }
 
     class Problem2 : Day7(Problem.TWO) {
-        override fun solve(): String {
+        override fun solve(): Long {
             val data = readLines().fold(Structure.Directory("/")) { acc, s ->
                 val split = s.split(" ")
                 when {
@@ -36,7 +36,7 @@ sealed class Day7(override val problem: Problem) : DayOfCode(Day.SEVEN, problem)
                     else -> acc.add(Structure.File(split[1], split[0].toLong()))
                 }
             }.home()
-            return data.getStructuresWithSizes().sortedBy { it.second }.first { data.size - it.second < 40000000 }.second.toString()
+            return data.getStructuresWithSizes().sortedBy { it.second }.first { data.size - it.second < 40000000 }.second
         }
     }
 

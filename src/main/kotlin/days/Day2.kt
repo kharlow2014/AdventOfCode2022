@@ -8,18 +8,18 @@ sealed class Day2(override val problem: Problem) : DayOfCode(day = Day.TWO, prob
         get() = "/2.data"
 
     class Problem1 : Day2(Problem.ONE) {
-        override fun solve(): String =
+        override fun solve(): Int =
             readLines().map {
                 getPlayForInput(it[0]) to getPlayForInput(it[2])
-            }.sumOf { it.second.scoreWhenPlayedAgainst(it.first) }.toString()
+            }.sumOf { it.second.scoreWhenPlayedAgainst(it.first) }
     }
 
     class Problem2 : Day2(Problem.TWO) {
-        override fun solve(): String =
+        override fun solve(): Int =
             readLines().map {
                 val opponentsChoice = getPlayForInput(it[0])
                 opponentsChoice to opponentsChoice.responseForOutcome(it[2])
-            }.sumOf { it.second.scoreWhenPlayedAgainst(it.first) }.toString()
+            }.sumOf { it.second.scoreWhenPlayedAgainst(it.first) }
     }
 
     protected fun getPlayForInput(input: Char): RockPaperScissors = when (input) {

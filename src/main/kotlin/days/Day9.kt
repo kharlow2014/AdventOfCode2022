@@ -9,7 +9,7 @@ sealed class Day9(override val problem: Problem) : DayOfCode(Day.NINE, problem) 
         get() = "/9.data"
 
     class Problem1 : Day9(Problem.ONE) {
-        override fun solve(): String {
+        override fun solve(): Int {
             var head = Pair(0, 0)
             val tail = mutableListOf(Pair(0, 0))
             readLines().forEach {
@@ -32,12 +32,12 @@ sealed class Day9(override val problem: Problem) : DayOfCode(Day.NINE, problem) 
                     })
                 }
             }
-            return tail.toSet().size.toString()
+            return tail.toSet().size
         }
     }
 
     class Problem2 : Day9(Problem.TWO) {
-        override fun solve(): String {
+        override fun solve(): Int {
             val knots = mutableListOf(Pair(0, 0), Pair(0, 0), Pair(0, 0), Pair(0, 0), Pair(0, 0), Pair(0, 0), Pair(0, 0), Pair(0, 0), Pair(0, 0), Pair(0, 0))
             val tail = mutableListOf(Pair(0, 0))
             readLines().forEach {
@@ -73,7 +73,7 @@ sealed class Day9(override val problem: Problem) : DayOfCode(Day.NINE, problem) 
                 }
                 println()
             }
-            return tail.toSet().size.toString()
+            return tail.toSet().size
         }
     }
 

@@ -1,7 +1,6 @@
 package days
 
 import DayOfCode
-import java.math.BigInteger
 import java.util.UUID
 
 sealed class Day11(override val problem: Problem) : DayOfCode(day = Day.ELEVEN, problem = problem) {
@@ -10,7 +9,7 @@ sealed class Day11(override val problem: Problem) : DayOfCode(day = Day.ELEVEN, 
         get() = "/11.data"
 
     class Problem1 : Day11(Problem.ONE) {
-        override fun solve(): String {
+        override fun solve(): Long {
             val group = MonkeyGroup(readText())
             group.rounds(20)
             return group.monkeyBusiness()
@@ -18,7 +17,7 @@ sealed class Day11(override val problem: Problem) : DayOfCode(day = Day.ELEVEN, 
     }
     
     class Problem2 : Day11(Problem.TWO) {
-        override fun solve(): String {
+        override fun solve(): Long {
             val group = MonkeyGroup(readText(), false)
             group.rounds(10000)
             return group.monkeyBusiness()
@@ -42,9 +41,9 @@ sealed class Day11(override val problem: Problem) : DayOfCode(day = Day.ELEVEN, 
             }
         }
         
-        fun monkeyBusiness(): String {
+        fun monkeyBusiness(): Long {
             val sorted = monkeys.sortedByDescending { it.inspectedCount }
-            return (sorted[0].inspectedCount.toBigInteger() * sorted[1].inspectedCount.toBigInteger()).toString()
+            return (sorted[0].inspectedCount.toLong() * sorted[1].inspectedCount.toLong())
         }
 
         companion object {
@@ -55,10 +54,10 @@ sealed class Day11(override val problem: Problem) : DayOfCode(day = Day.ELEVEN, 
     data class Monkey(private val match: MatchResult) {
 
         val id: Int = match.groupValues[1].toInt()
-        val items: MutableList<Item> = match.groupValues[2].split(", ").map { Item(it.toBigInteger()) }.toMutableList()
-        val calmingInspect: (BigInteger) -> Item
-        val worryingInspect: (BigInteger) -> Item
-        val divider = match.groupValues[8].toBigInteger()
+        val items: MutableList<Item> = match.groupValues[2].split(", ").map { Item(it.toLong()) }.toMutableList()
+        val calmingInspect: (Long) -> Item
+        val worryingInspect: (Long) -> Item
+        val divider = match.groupValues[8].toLong()
         private val trueMonkey = match.groupValues[9].toInt()
         private val falseMonkey = match.groupValues[10].toInt()
         var inspectedCount = 0
@@ -68,34 +67,29 @@ sealed class Day11(override val problem: Problem) : DayOfCode(day = Day.ELEVEN, 
                 inspectedCount++
                 val item = items[0].apply { worry %= it }
                 items.remove(item)
-                val a = if (match.groupValues[5] == "old") item.worry else match.groupValues[5].toBigInteger()
-                val b = if (match.groupValues[7] == "old") item.worry else match.groupValues[7].toBigInteger()
-                if (match.groupValues[6] == "+") item.apply { worry = (a + b) / three } else item.apply { worry = (a * b) / three }
+                val a = if (match.groupValues[5] == "old") item.worry else match.groupValues[5].toLong()
+                val b = if (match.groupValues[7] == "old") item.worry else match.groupValues[7].toLong()
+                if (match.groupValues[6] == "+") item.apply { worry = (a + b) / 3L } else item.apply { worry = (a * b) / 3L }
             }
             worryingInspect = {
                 inspectedCount++
                 val item = items[0].apply { worry %= it }
                 items.remove(item)
-                val a = if (match.groupValues[5] == "old") item.worry else match.groupValues[5].toBigInteger()
-                val b = if (match.groupValues[7] == "old") item.worry else match.groupValues[7].toBigInteger()
+                val a = if (match.groupValues[5] == "old") item.worry else match.groupValues[5].toLong()
+                val b = if (match.groupValues[7] == "old") item.worry else match.groupValues[7].toLong()
                 if (match.groupValues[6] == "+") item.apply { worry = a + b } else item.apply { worry = a * b }
             }
         }
         
         fun test(item: Item): Pair<Item, Int> {
-            return if (item.worry % divider == zero) {
+            return if (item.worry % divider == 0L) {
                 item to trueMonkey
             } else {
                 item to falseMonkey
             }
         }
-        
-        companion object {
-            val zero = 0.toBigInteger()
-            val three = 3.toBigInteger()
-        }
     }
 
-    data class Item(var worry: BigInteger, private val id: UUID = UUID.randomUUID())
+    data class Item(var worry: Long, private val id: UUID = UUID.randomUUID())
 
 }

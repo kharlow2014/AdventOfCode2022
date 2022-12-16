@@ -11,7 +11,7 @@ sealed class Day15(override val problem: Problem) : DayOfCode(day = Day.FIFTEEN,
         get() = "/15.data"
     
     class Problem1(private val y: Int = 2000000) : Day15(Problem.ONE) {
-        override fun solve(): String {
+        override fun solve(): Int {
             val sensors = Sensors(readLines())
             val minColumn = sensors.sensorMap.values.minOf { it.minPointCoveredAtY(y).first }
             val maxColumn = sensors.sensorMap.values.maxOf { it.maxPointCoveredAtY(y).first }
@@ -28,14 +28,14 @@ sealed class Day15(override val problem: Problem) : DayOfCode(day = Day.FIFTEEN,
                 }
                 currentPair = currentPair.copy(first = currentPair.first + 1)
             }
-            return count.toString()
+            return count
         }
     }
 
     class Problem2(private val min: Int = 0, private val max: Int = 4000000) : Day15(Problem.TWO) {
-        override fun solve(): String {
+        override fun solve(): Long {
             val notCovered = notCoveredPair()
-            return (notCovered.first.toLong() * 4000000 + notCovered.second.toLong()).toString()
+            return notCovered.first.toLong() * 4000000 + notCovered.second.toLong()
         }
         
         private fun notCoveredPair(): Pair<Int, Int> {

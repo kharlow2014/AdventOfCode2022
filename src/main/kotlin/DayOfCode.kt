@@ -1,7 +1,7 @@
 abstract class DayOfCode(val day: Day, open val problem: Problem) {
 
     abstract val dataFileName: String
-    abstract fun solve(): String
+    abstract fun solve(): Any
 
     protected fun readLines(): List<String> = this::class.java.getResourceAsStream(dataFileName).bufferedReader().readLines()
 

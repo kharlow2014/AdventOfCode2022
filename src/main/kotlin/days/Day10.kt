@@ -8,7 +8,7 @@ sealed class Day10(override val problem: Problem) : DayOfCode(day = Day.TEN, pro
         get() = "/10.data"
 
     class Problem1 : Day10(Problem.ONE) {
-        override fun solve(): String {
+        override fun solve(): Int {
             var d: Int? = null
             var cycle = 0
             var x = 1
@@ -29,7 +29,7 @@ sealed class Day10(override val problem: Problem) : DayOfCode(day = Day.TEN, pro
                     0
                 out + o
             }
-            return  out.toString()
+            return out
         }
     }
 

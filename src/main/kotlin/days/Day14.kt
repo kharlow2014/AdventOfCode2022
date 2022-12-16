@@ -10,16 +10,16 @@ sealed class Day14(override val problem: DayOfCode.Problem) : DayOfCode(day = Da
         get() = "/14.data"
 
     class Problem1 : Day14(Problem.ONE) {
-        override fun solve(): String {
+        override fun solve(): Int {
             val map = RockMap.Chasm(readLines())
-            return map.dropSand().toString()
+            return map.dropSand()
         }
     }
 
     class Problem2 : Day14(Problem.TWO) {
-        override fun solve(): String {
+        override fun solve(): Int {
             val map = RockMap.Floor(readLines())
-            return map.dropSand().toString()
+            return map.dropSand()
         }
     }
 
